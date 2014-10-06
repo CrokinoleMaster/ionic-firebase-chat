@@ -36,7 +36,7 @@
       <ion-content>
         <ion-list ng-repeat="chat in chatList">
           <ion-item>
-            {{chat.username}}
+            {{chat.username}}:
             {{chat.message}}
           </ion-item>
         </ion-list>
@@ -44,7 +44,7 @@
 
       <ion-footer-bar class="bar-stable">
         <input type="text" ng-model="currentMessage"/>
-        <button class="button button-positive" style="width:5em" ng-click="sendMessage()">send</button>
+        <input type="submit" value="send" class="button button-positive" style="width:5em" ng-click="sendMessage()"/>
       </ion-footer>
     </ion-pane>
   </body>
