@@ -1,19 +1,26 @@
 'use strict'
 angular.module('starter')
-.controller('ChatController', ['$scope', '$firebase', 'fbUrl', '$ionicModal', function($scope, $firebase, fbUrl, $ionicModal) {
+.controller('ChatController', ['$scope', '$firebase', 'fbUrl', '$ionicModal', '$ionicScrollDelegate',function($scope, $firebase, fbUrl, $ionicModal, $ionicScrollDelegate) {
   var ref = new Firebase(fbUrl);
   var sync = $firebase(ref);
 
   var chatList = sync.$asArray();
 
-  $scope.currentUser = {username: '', message: ''};
-  // chatList.$add({username: 'guest', message: "how are you"});
+  $scope.currentUser = {userColor: randomColor({luminosity: 'dark'}), username: '', message: ''};
 
   $scope.chatList = chatList;
 
   $scope.sendMessage = function() {
     chatList.$add($scope.currentUser);
+    $scope.currentUser.message = '';
   };
+
+  $scope.$watch('chatList', function(val) {
+    // setTimeout(function() {
+      $ionicScrollDelegate.resize();
+      $ionicScrollDelegate.scrollBottom();
+    // }, 300);
+  }, true);
 
 
   // show login modal

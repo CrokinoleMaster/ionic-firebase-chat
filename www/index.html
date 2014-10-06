@@ -18,6 +18,8 @@
     <script src="lib/firebase/firebase.js"></script>
     <!-- angularfire -->
     <script src="lib/angularfire/dist/angularfire.min.js"></script>
+    <!-- randomColor -->
+    <script src="lib/randomColor/randomColor.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -35,8 +37,8 @@
 
       <ion-content>
         <ion-list ng-repeat="chat in chatList">
-          <ion-item>
-            {{chat.username}}:
+          <ion-item class="item-text-wrap">
+          <span ng-style="{'color': chat.userColor}">{{chat.username}}</span>:
             {{chat.message}}
           </ion-item>
         </ion-list>
