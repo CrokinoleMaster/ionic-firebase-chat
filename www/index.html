@@ -43,7 +43,7 @@
       </ion-content>
 
       <ion-footer-bar class="bar-stable">
-        <input type="text" ng-model="currentMessage"/>
+        <input type="text" ng-model="currentUser.message" ng-keyup="$event.keyCode == 13 ? sendMessage() : null"/>
         <input type="submit" value="send" class="button button-positive" style="width:5em" ng-click="sendMessage()"/>
       </ion-footer>
     </ion-pane>
@@ -56,7 +56,12 @@
         <h1 class="title">Login</h1>
       </ion-header-bar>
       <ion-content>
-        hello
+        <div class="list">
+          <label class="item item-input">
+            <input type="text" placeholder="username" ng-model="currentUser.username" />
+          </label>
+          <input type="submit" value="Submit" class="button button-block button-positive" ng-click="closeModal()" />
+        </div>
       </ion-content>
     </ion-modal-view>
   </script>

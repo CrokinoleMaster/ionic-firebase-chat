@@ -6,13 +6,13 @@ angular.module('starter')
 
   var chatList = sync.$asArray();
 
-  $scope.currentMessage = '';
+  $scope.currentUser = {username: '', message: ''};
   // chatList.$add({username: 'guest', message: "how are you"});
 
   $scope.chatList = chatList;
 
   $scope.sendMessage = function() {
-    chatList.$add({username: 'guest', message: $scope.currentMessage});
+    chatList.$add($scope.currentUser);
   };
 
 
@@ -24,12 +24,15 @@ angular.module('starter')
     hardwareBackButtonClose: false
   }).then(function(modal) {
     modal.show();
+    $scope.modal = modal;
   });
   $scope.openModal = function() {
     $scope.modal.show();
   };
   $scope.closeModal = function() {
-    $scope.modal.hide();
+    if ($scope.currentUser.username.length > 0) {
+      $scope.modal.hide();
+    }
   };
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
