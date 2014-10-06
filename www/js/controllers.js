@@ -2,7 +2,7 @@
 angular.module('starter')
 .controller('ChatController', ['$scope', '$firebase', 'fbUrl', '$ionicModal', '$ionicScrollDelegate',function($scope, $firebase, fbUrl, $ionicModal, $ionicScrollDelegate) {
   var ref = new Firebase(fbUrl);
-  var sync = $firebase(ref);
+  var sync = $firebase(ref.endAt().limit(20));
 
   var chatList = sync.$asArray();
 
@@ -16,10 +16,8 @@ angular.module('starter')
   };
 
   $scope.$watch('chatList', function(val) {
-    // setTimeout(function() {
-      $ionicScrollDelegate.resize();
-      $ionicScrollDelegate.scrollBottom();
-    // }, 300);
+    $ionicScrollDelegate.resize();
+    $ionicScrollDelegate.scrollBottom();
   }, true);
 
 
