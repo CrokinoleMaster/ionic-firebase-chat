@@ -40,6 +40,7 @@
           <ion-item class="item-text-wrap">
           <span ng-style="{'color': chat.userColor}">{{chat.username}}</span>:
             {{chat.message}}
+            <img ng-show="chat.photo" ng-src="data:image/png;base64,{{chat.photo}}"/>
           </ion-item>
         </ion-list>
       </ion-content>
